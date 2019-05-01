@@ -40,7 +40,9 @@ public class ProductService {
 
     public void removeProduct(Product product) {
         Product productToBeDeleted = em.merge(product);
+        tx.begin();
         em.remove(productToBeDeleted);
+        tx.commit();
     }
 
     public Product changePrice(Product product, Double newPrice) {
